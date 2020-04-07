@@ -20,7 +20,7 @@ def find_all_indexes(input_str, search_str):
 
 
 def insert(source: str):
-    if (type(source) is not type(None)):
+    if (not isinstance(source, type(None))):
         for key in counter:
             counter[key] += find_all_indexes(source.upper(), key)
 
@@ -45,9 +45,9 @@ def create_xml(filename):
 
 
 def main():
-    mytree = ET.parse('source.xml')
+    mytree = ET.parse('res/source.xml')
     myroot = mytree.getroot()
-    places_list = open('converted.txt')
+    places_list = open('res/input.txt')
     for line in places_list:
         line = line.replace('\n', '')
         counter[line] = 0
@@ -64,7 +64,7 @@ def main():
             insert(fulltext)
     end = time.time() - start_time
     print(end)
-    create_xml("output.xml")
+    create_xml("output/output.xml")
 
 
 if __name__ == "__main__":
